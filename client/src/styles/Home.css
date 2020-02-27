@@ -121,3 +121,10 @@ font-family: 'Muli';
     font-size: 14px;
     line-height: 25px;
 }
+
+.icon {
+    color: #FB3353;
+}
+.icon:hover {
+    cursor: pointer;
+}

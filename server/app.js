@@ -1,13 +1,15 @@
 require("dotenv").config();
 require("./config/mongodb");
-// require("./config/passport");
+require("./config/passport");
 
 const express = require("express");
 const session = require("express-session");
+const passport = require("passport");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const path = require("path")
 // const passport = require("passport");
 
 // ------------------------------------------
@@ -27,7 +29,7 @@ app.use(
 );
 
 const corsOptions = {
-    origin: [process.env.CLIENT_URL],
+    origin: process.env.CLIENT_URL,
     credentials: true,
     optionsSuccessStatus: 200
 };
@@ -35,20 +37,25 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use(express.static(path.join(__dirname, "public")));
 //------------------------------------------
 // BASE BACKEND ROUTE
 // ------------------------------------------
 
-app.get("/", (req, res) => {
-    res.send("backend server is running");
-});
+// app.get("/", (req, res) => {
+//     res.send("backend server is running");
+// });
 
 
 //------------------------------------------
 // SPLITED ROUTING
 // ------------------------------------------
+const authRouter = require("./routes/auth")
 
+app.use(authRouter)
 
 
 

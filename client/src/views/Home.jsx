@@ -13,8 +13,6 @@ export default function Home() {
     const [isSelected, setIsSelected] = useState("login")
 
 
-  
-
     return (
         <div className="form-page">
             <div className="home-header">
