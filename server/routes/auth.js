@@ -74,6 +74,26 @@ router.post("/signin", (req, res, next) => {
 });
 
 
+router.post("/signout", (req, res, next) => {
+  req.logout(); // utility function provided by passport
+  res.json({ message: "Success" });
+});
+
+router.use("/is-loggedin", (req, res, next) => {
+  if (req.isAuthenticated()) {
+    // method provided by passport
+    const { _id, username, email } = req.user;
+    return res.status(200).json({
+      currentUser: {
+        _id,
+        username,
+        email
+      }
+    });
+  }
+  res.status(403).json("Unauthorized");
+});
+
 
 
 

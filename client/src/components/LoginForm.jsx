@@ -1,25 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, Redirect } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
+import UserContext from "../auth/UserContext"
 import apiHandler  from '../api/apiHandler'
 
 const api = new apiHandler();
 
-export default function LoginForm() {
+export default withRouter(function LoginForm(props) {
 
-    const [redirection, setRedirection] = useState(false)
+    // const [redirection, setRedirection] = useState(false)
+    // const [loginUserInfo, setLoginUserInfo] = useState({})
+    const userContext = useContext(UserContext);
+    const { setCurrentUser } = userContext;
 
     const {register, handleSubmit} = useForm();
-    const onSubmit = data => {
-        api
-        .post("/signin", data)
-        .then(() => setRedirection(true))
-        .catch(err => console.log(err))
-    }
-
-    if (redirection) {
-        return <Redirect to="/dashboard"/>
+    const onSubmit = async data => {
+        try {
+            const apiRes = await api.post("/signin", data);
+            setCurrentUser(apiRes.data.currentUser);
+            props.history.push("/dashboard")
+        } catch (err) {
+            setCurrentUser(null)
+        }
     }
 
     return (
@@ -38,4 +41,4 @@ export default function LoginForm() {
                 <button className="btn">Login</button>
             </form>
     )
-}
+})

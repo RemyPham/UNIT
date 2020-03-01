@@ -54,8 +54,10 @@ app.use(express.static(path.join(__dirname, "public")));
 // SPLITED ROUTING
 // ------------------------------------------
 const authRouter = require("./routes/auth")
+const dashRouter = require("./routes/dashboard")
 
 app.use(authRouter)
+app.use(dashRouter)
 
 
 

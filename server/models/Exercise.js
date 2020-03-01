@@ -8,30 +8,30 @@ const exerciseSchema = new Schema({
     },
     title: {
         type: String,
-        required
+        required: true
     },
     unit1Type: {
         type: String,
         enum: ["kg", "cal"],
-        required
+        required: true
     },
     unit2Type: {
         type: String,
         enum: ["rep", "min"],
-        required
+        required: true
     },
     tags: [{
         type: Schema.Types.ObjectId,
         ref: "Tag"
     }],
-    data: {
+    data: [{
         unit1Data: {
             type: Number,
-            required,
+            required: true,
         },
         unit2Data: {
             type: Number,
-            required,
+            required: true,
         },
         date: {
             type: Date,
@@ -40,9 +40,9 @@ const exerciseSchema = new Schema({
         mood: {
             type: String,
             enum: ["bad", "ok", "good", "easy"],
-            required,
+            required: true,
         }
-    }
+    }]
 })
 
 const exerciseModel = mongoose.model("Exercise", exerciseSchema);

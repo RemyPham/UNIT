@@ -1,0 +1,14 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.graphTitle {
+    font-family: "Poppins";
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 25px;
+    color: #3B3B4D;
+    padding-left: 10%;
+}

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState }  from 'react';
+import React, { useState }  from 'react';
 //components
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm"
@@ -16,7 +16,7 @@ export default function Home() {
     return (
         <div className="form-page">
             <div className="home-header">
-                <img src={whiteLogo} className="home-logo" />
+                <img src={whiteLogo} className="home-logo" alt="whiteLogo" />
                 <div className="link-container">
                     <p
                     onClick={() => setIsSelected("login")}
