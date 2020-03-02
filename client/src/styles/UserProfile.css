@@ -1,7 +1,10 @@
 .userProfilePage {
     height: calc(100vh - 50px);
 }
-
+.userOption {
+    height: calc(90vh - 50px);
+    overflow: scroll;
+}
 .userOption p {
     height: 10vh;
     display: flex;

@@ -38,7 +38,7 @@ export default function Dashboard(props) {
         exercises ? (
             <div className="page">
                 {exercises.map((exercise,i) => (
-                    <div key={i}>
+                    <div className="graphContainer" key={i}>
                         <p className="graphTitle">{exercise.title}</p>
                         <Graph exercisesInfos={exercise} />
                     </div>
