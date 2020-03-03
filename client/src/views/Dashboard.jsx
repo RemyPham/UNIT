@@ -17,7 +17,7 @@ export default function Dashboard(props) {
     const {currentUser} = useAuth();
 
     
-    const [iconSelect, setIconSelect] = useState("chart")
+    const [iconSelect, setIconSelect] = useState("add")
     const [exercises, setExercises] = useState(null)
     
     useEffect(() => {
@@ -42,14 +42,18 @@ export default function Dashboard(props) {
     return iconSelect === "chart" ? (
         exercises ? (
             <div className="page">
-                {exercises.map((exercise,i) => (
-                    <div className="graphContainer" key={i}>
-                        <p className="graphTitle">{exercise.title}</p>
-                        <Graph exercisesInfos={exercise} />
-                    </div>
-                    
-                ))}
-                
+                <div className="graphContainer">
+                    {exercises.map((exercise,i) => (
+                        
+                        <div className="graphBox" key={i}>
+                            <div>
+                               <p className="graphTitle">{exercise.title}</p>
+                                <p>{exercise.data.date}</p>
+                            </div>
+                            <Graph exercisesInfos={exercise} />
+                        </div>
+                    ))}
+                </div>
                 
                 <FooterUser selection={iconSelect} handleIconState={e => setIconSelect(e)} />
             </div>

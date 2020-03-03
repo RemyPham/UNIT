@@ -17,4 +17,10 @@
 .graphContainer {
     height: calc(100vh - 50px);
     overflow: scroll;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-items: center;
+}
+.graphBox {
+    /* border: solid */
 }
