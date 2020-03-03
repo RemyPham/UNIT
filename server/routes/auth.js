@@ -59,6 +59,7 @@ router.post("/signin", (req, res, next) => {
       // dont send sensitive informations back to the client
       // let's choose the exposed user below
       const { _id, username, email } = user;
+      console.log("DEV MODE"+ req.user)
       // and only expose non-sensitive inofrmations to the client's state
       next(
         res.status(200).json({

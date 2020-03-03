@@ -9,7 +9,8 @@ const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const path = require("path")
+const path = require("path");
+const _DEVMODE = true
 // const passport = require("passport");
 
 // ------------------------------------------
@@ -41,6 +42,18 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, "public")));
+
+if (_DEVMODE === true) {
+  app.use(function devMode(req, res, next) {
+    req.user = {
+      _id: "5e57e03e4e80cd07242d18fb",
+      username: "Remy",
+      email: "remy@unit.com"
+    }
+
+    next();
+  });
+}
 //------------------------------------------
 // BASE BACKEND ROUTE
 // ------------------------------------------

@@ -14,11 +14,11 @@ const api = new apiHandler();
 
 export default function Dashboard(props) {
     const userContext = useContext(UserContext);
-    const { setCurrentUser } = userContext;
+    const { currentUser } = userContext;
 
     const [iconSelect, setIconSelect] = useState("chart")
     const [exercises, setExercises] = useState(null)
-
+    console.log("current user",currentUser)
     useEffect(() => {
         api
         .get("/dashboard")
