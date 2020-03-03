@@ -19,7 +19,6 @@ const _DEVMODE = true
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-
 app.use(
     session({
       cookie: { secure: false, maxAge: 4 * 60 * 60 * 1000 }, // 4 hours
@@ -66,11 +65,14 @@ if (_DEVMODE === true) {
 //------------------------------------------
 // SPLITED ROUTING
 // ------------------------------------------
+
 const authRouter = require("./routes/auth")
 const dashRouter = require("./routes/dashboard")
+const exoRouter = require("./routes/exercise")
 
-app.use(authRouter)
-app.use(dashRouter)
+app.use("/",authRouter)
+app.use("/dashboard",dashRouter)
+app.use("/exercise", exoRouter)
 
 
 

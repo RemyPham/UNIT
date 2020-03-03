@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../auth/UserContext"
 import apiHandler  from '../api/apiHandler'
+import {useAuth} from "../auth/useAuth";
 
 import "../styles/Dashboard.css"
 
@@ -13,16 +14,20 @@ import UserProfile from '../components/UserProfile'
 const api = new apiHandler();
 
 export default function Dashboard(props) {
-    const userContext = useContext(UserContext);
-    const { currentUser } = userContext;
+    const {currentUser} = useAuth();
 
+    
     const [iconSelect, setIconSelect] = useState("chart")
     const [exercises, setExercises] = useState(null)
-    console.log("current user",currentUser)
+    
     useEffect(() => {
         api
         .get("/dashboard")
         .then(userExercise => {
+            console.log(userExercise)
+            if (userExercise.data.length === 0) {
+                setExercises(null)
+            } else
             setExercises(userExercise.data);
         })
         .catch(err => console.log(err))

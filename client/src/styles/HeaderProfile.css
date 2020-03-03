@@ -1,6 +1,5 @@
 .headerProfile {
     display: flex;
-    justify-content: space-between;
     height: 10%;
     border-bottom: solid 0.5px rgb(108, 122, 137, 0.5);
     align-items: center;
@@ -14,6 +13,6 @@
     font-weight: 600;
     font-size: 20px;
     line-height: 30px;
-    transform: translate(-50%);
+    margin: 0 auto;
 }
 

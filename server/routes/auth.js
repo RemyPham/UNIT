@@ -5,9 +5,7 @@ const passport = require("passport");
 const userModel = require("../models/User")
 
 const minPasswordLength = 6;
-
 router.post("/signup", (req, res, next) => {
-  debugger
   // console.log("file ?", req.file);
   // console.log(req.body);
   var errorMsg = "";
@@ -33,7 +31,6 @@ router.post("/signup", (req, res, next) => {
   userModel
   .create(newUser)
   .then(newUserFromDB => {
-      debugger
       res.status(200).json({msg: "signup ok"});
   })
   .catch(err => {
@@ -61,7 +58,6 @@ router.post("/signin", (req, res, next) => {
       // dont send sensitive informations back to the client
       // let's choose the exposed user below
       const { _id, username, email } = user;
-      console.log("DEV MODE"+ req.user)
       // and only expose non-sensitive inofrmations to the client's state
       next(
         res.status(200).json({
@@ -97,9 +93,9 @@ router.use("/is-loggedin", (req, res, next) => {
   // res.status(403).json("Unauthorized");
   return res.status(200).json({
     currentUser: {
-      _id : "5e5d460cad71ca47f847cc9a",
-      username : "tati",
-      email : "tati@gmail.com"
+      _id : "5e57e03e4e80cd07242d18fb",
+      username : "Remy",
+      email : "remy@unit.com"
     }
   });
 });

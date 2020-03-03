@@ -5,17 +5,20 @@ var ObjectId = require('mongodb').ObjectID;
 const exerciseModel = require("../models/Exercise")
 // const userModel = require("../models/User")
 
-
-router.get("/", (req, res) => {
-    console.log("here")
+router.post("/", (req,res) => {
+    console.log("BACK", req.body)
     exerciseModel
-    .find({"user": ObjectId(req.user._id)})
-    .populate("user")
-    .then(userExercise => {
-        res.status(200).json(userExercise)
+    .create(req.body)
+    .then(createdExo => {
+        res.status(200).json(createdExo)
     })
-    .catch(err=>console.log(err))
+    .catch(err => {
+        res.status(500).json(err)
+    })
 })
+
+
+
 
 
 

@@ -7,11 +7,10 @@ export default function UserProfile() {
 
     const {currentUser} = useAuth();
  
-    console.log(currentUser)
 
     return (
         <div className="userProfilePage">
-            <HeaderProfile />
+            <HeaderProfile userInfo={currentUser} />
             <div className="userOption">
                 <div className="userInfos">
                     <p>My information</p>
@@ -26,7 +25,7 @@ export default function UserProfile() {
 
                 <div className="userAccount">
                     <p>Export my datas</p>
-                    {/* <p>Reset account</p> */}
+                    <p>Reset account</p>
                 </div>
             </div>
         </div>

@@ -1,17 +1,31 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
+import apiHandler  from '../../api/apiHandler'
+
+
+
+const api = new apiHandler();
+
 
 export default class ExoUnitType extends Component {
     state = {
         unit1Type: "kg",
         unit2Type: "rep",
-        title: this.props.siblingInfo.exerciseName
+        title: this.props.siblingInfo.exerciseName,
+        user: this.props.userInfo._id
     }
 
-
+    
     handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        console.log("front")
+
+        api
+        .post("/exercise", {...this.state})
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+
     }
     handleUnit1 = (e) => {
         this.setState({exerciseType1: e.target.value})
@@ -23,7 +37,7 @@ export default class ExoUnitType extends Component {
 
     render() {
         console.log(this.state)
-        console.log(this.props.siblingInfo.exerciseName)
+        console.log(this.props.userInfo._id)
         return (
             <form className="exoTypeForm" onSubmit={this.handleSubmit}>
                 <p>Select unit</p>

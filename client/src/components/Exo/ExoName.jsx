@@ -14,7 +14,6 @@ export default class ExoName extends Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <form className="exoForm" onSubmit={this.handleSubmit}>
                 <input

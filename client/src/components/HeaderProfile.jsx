@@ -5,7 +5,8 @@ import '../styles/HeaderProfile.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 
-export default function HeaderProfile() {
+export default function HeaderProfile(props) {
+    console.log(props)
     return (
         <div className="headerProfile">
             <div>
@@ -15,7 +16,7 @@ export default function HeaderProfile() {
                 />
              </div>
             <div>
-                @usernameOfUser
+                {props.userInfo.username}
             </div>
         </div>
     )
