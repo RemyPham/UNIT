@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import '../styles/UserProfile.css'
 import HeaderProfile from "../components/HeaderProfile"
+import {useAuth} from "../auth/useAuth";
 
 export default function UserProfile() {
+
+    const {currentUser} = useAuth();
+ 
+    console.log(currentUser)
+
     return (
         <div className="userProfilePage">
             <HeaderProfile />
@@ -20,7 +26,7 @@ export default function UserProfile() {
 
                 <div className="userAccount">
                     <p>Export my datas</p>
-                    <p>Reset account</p>
+                    {/* <p>Reset account</p> */}
                 </div>
             </div>
         </div>
