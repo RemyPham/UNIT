@@ -7,6 +7,7 @@ const userModel = require("../models/User")
 const minPasswordLength = 6;
 
 router.post("/signup", (req, res, next) => {
+  debugger
   // console.log("file ?", req.file);
   // console.log(req.body);
   var errorMsg = "";
@@ -32,6 +33,7 @@ router.post("/signup", (req, res, next) => {
   userModel
   .create(newUser)
   .then(newUserFromDB => {
+      debugger
       res.status(200).json({msg: "signup ok"});
   })
   .catch(err => {
@@ -80,18 +82,25 @@ router.post("/signout", (req, res, next) => {
 });
 
 router.use("/is-loggedin", (req, res, next) => {
-  if (req.isAuthenticated()) {
-    // method provided by passport
-    const { _id, username, email } = req.user;
-    return res.status(200).json({
-      currentUser: {
-        _id,
-        username,
-        email
-      }
-    });
-  }
-  res.status(403).json("Unauthorized");
+  // if (req.isAuthenticated()) {
+  //   // method provided by passport
+  //   const { _id, username, email } = req.user;
+  //   return res.status(200).json({
+  //     currentUser: {
+  //       _id,
+  //       username,
+  //       email
+  //     }
+  //   });
+  // }
+  // res.status(403).json("Unauthorized");
+  return res.status(200).json({
+    currentUser: {
+      _id : "5e5d460cad71ca47f847cc9a",
+      username : "tati",
+      email : "tati@gmail.com"
+    }
+  });
 });
 
 
