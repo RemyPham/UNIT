@@ -17,7 +17,7 @@ export default function Dashboard(props) {
     const {currentUser} = useAuth();
 
     
-    const [iconSelect, setIconSelect] = useState("add")
+    const [iconSelect, setIconSelect] = useState("chart")
     const [exercises, setExercises] = useState(null)
     
     useEffect(() => {

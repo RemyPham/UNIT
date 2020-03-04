@@ -69,13 +69,12 @@ if (_DEVMODE === true) {
 const authRouter = require("./routes/auth")
 const dashRouter = require("./routes/dashboard")
 const exoRouter = require("./routes/exercise")
+const dataRouter = require("./routes/data")
 
 app.use("/",authRouter)
 app.use("/dashboard",dashRouter)
 app.use("/exercise", exoRouter)
-
-
-
+app.use("/data", dataRouter)
 
 
 

@@ -40,7 +40,7 @@ export default function ExoSelection(props) {
             </select>
             <label className="exoFormLabel">Select your exercise to update</label>
             <button
-            onClick={exoSelect !== null ? () => this.props.addValue(exoSelect) : handleSubmit}
+            onClick={exoSelect !== null ? () => props.addValue(exoSelect) : handleSubmit}
             className="exoFormBtn">Next</button>
         </form>
     ) : <p>...loading</p>

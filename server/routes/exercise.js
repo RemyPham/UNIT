@@ -17,7 +17,7 @@ router.post("/", (req,res) => {
 })
 
 router.get("/", (req,res) => {
-    console.log("HERE DANS LE BACK")
+    
     exerciseModel
     .find({"user": ObjectId(req.user._id)})
     .then(listOfExo => {

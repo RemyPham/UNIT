@@ -18,7 +18,7 @@ export default function AddData() {
     const [addTypeState, setAddTypeState] = useState(false)
 
 
-    //STATE FOR DATA
+    //STATE FOR DATA // default value : true false false
     const [dataState, setDataState] = useState(true);
     const [addExoValueState, setAddExoValueState] = useState(false);
     const [addMoodState, setAddMoodState] = useState(false);
@@ -34,7 +34,7 @@ export default function AddData() {
     const [exoValue2, setExoValue2] = useState(null);
     
 
-    const [userDataChoice, setUserDataChoice] = useState("data") //change here in default : "exercise"
+    const [userDataChoice, setUserDataChoice] = useState("exercise") //change here in default : "exercise"
 
     // const triggerAddTag = () => {
     //     setJustAState(false);
@@ -44,8 +44,8 @@ export default function AddData() {
 
     //FUNCTION EXERCISE TO SWITCH PAGE
     const triggerAddType = (exoNameInputValue) => {
-        console.log(exoNameInputValue.exerciseName)
         setExerciseTitle(exoNameInputValue);
+
         setJustAState(false);
         // setAddTagState(false);
         setAddTypeState(true);
@@ -55,11 +55,19 @@ export default function AddData() {
 
     //FUNCTION DATA TO SWITCH PAGE
     const triggerValueState = (exoSelect) => {
-        console.log(exoSelect);
-        setExoSelectedID(exoSelect)
+        setExoSelectedID(exoSelect);
+
         setDataState(false);
         setAddExoValueState(true);
         setAddMoodState(false);
+    }
+
+    const triggerMoodState = (value1, value2) => {
+        setExoValue1(value1);
+        setExoValue2(value2);
+
+        setAddExoValueState(false);
+        setAddMoodState(true);
     }
 
 
@@ -68,7 +76,7 @@ export default function AddData() {
             <div className="dataHeader">
                 <div className="whatToAdd">
                     <p
-                    className={"home-link " + (userDataChoice === 'exercice' && "userChoice")}
+                    className={"home-link " + (userDataChoice === 'exercise' && "userChoice")}
                     onClick={() => setUserDataChoice("exercise")}>
                         Exercise
                     </p>
@@ -93,9 +101,15 @@ export default function AddData() {
                     {/* COMPONENT FOR DATA */}
                     {(userDataChoice === "data" && dataState) && <ExoSelection addValue={triggerValueState} userInfo={currentUser}/>}
 
-                    {(userDataChoice === "data" && addExoValueState) && <DataValue exoID={exoSelectedID} />}
+                    {(userDataChoice === "data" && addExoValueState && exoSelectedID) && <DataValue exoID={exoSelectedID} addMood={triggerMoodState} />}
 
-                    {(userDataChoice === "data" && addMoodState) && <DataMood />}
+
+                    {/* && exoSelectedID && exoValue1 && exoValue2 */}
+                    {(userDataChoice === "data" && addMoodState && exoSelectedID && exoValue1 && exoValue2) && <DataMood
+                    exoID={exoSelectedID}
+                    unitValue1={exoValue1}
+                    unitValue2={exoValue2}
+                    />}
                 </div>
                 
             </div>
